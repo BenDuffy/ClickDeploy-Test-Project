@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customConsoleComponents>
-        <primaryTabComponents>
-            <containers>
-                <isContainerAutoSizeEnabled>true</isContainerAutoSizeEnabled>
-                <region>Left</region>
-                <sidebarComponents>
-                    <componentType>Lookup</componentType>
-                    <createAction>NewContact</createAction>
-                    <enableLinking>true</enableLinking>
-                    <lookup>Contact</lookup>
-                    <unit>Percentage</unit>
-                </sidebarComponents>
-                <style>Stack</style>
-                <unit>Pixel</unit>
-                <width>400</width>
-            </containers>
-        </primaryTabComponents>
-    </customConsoleComponents>
     <emailDefault>false</emailDefault>
-    <excludeButtons>Submit</excludeButtons>
     <feedLayout>
         <autocollapsePublisher>true</autocollapsePublisher>
         <compactFeed>true</compactFeed>
@@ -32,19 +13,20 @@
             <feedItemType>CallLogPost</feedItemType>
         </feedFilters>
         <feedFilters>
-            <feedFilterName>Case.Customer_Interactions</feedFilterName>
-            <feedFilterType>Custom</feedFilterType>
+            <feedFilterType>FeedItemType</feedFilterType>
+            <feedItemType>TextPost</feedItemType>
         </feedFilters>
         <feedFilters>
             <feedFilterType>FeedItemType</feedFilterType>
-            <feedItemType>EmailMessageEvent</feedItemType>
+            <feedItemType>ChangeStatusPost</feedItemType>
+        </feedFilters>
+        <feedFilters>
+            <feedFilterType>FeedItemType</feedFilterType>
+            <feedItemType>ActivityEvent</feedItemType>
         </feedFilters>
         <fullWidthFeed>true</fullWidthFeed>
         <hideSidebar>true</hideSidebar>
         <highlightExternalFeedItems>false</highlightExternalFeedItems>
-        <leftComponents>
-            <componentType>Milestones</componentType>
-        </leftComponents>
         <rightComponents>
             <componentType>HelpAndToolLinks</componentType>
         </rightComponents>
@@ -65,6 +47,8 @@
         </rightComponents>
         <useInlineFiltersInConsole>false</useInlineFiltersInConsole>
     </feedLayout>
+    <headers>PersonalTagging</headers>
+    <headers>PublicTagging</headers>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -95,14 +79,6 @@
                 <behavior>Edit</behavior>
                 <field>Reason</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>EntitlementId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Reopen_Date_Time__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -124,14 +100,6 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Origin</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SlaStartDate</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>SlaExitDate</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -239,10 +207,9 @@
         <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>true</customLabel>
+        <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
-        <label>Custom Links</label>
         <layoutColumns>
             <layoutItems>
                 <customLink>UpsellCrosssellOpportunity</customLink>
@@ -254,7 +221,7 @@
     </layoutSections>
     <quickActionList>
         <quickActionListItems>
-            <quickActionName>Case.Email</quickActionName>
+            <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>Case.LogACall</quickActionName>
@@ -264,9 +231,6 @@
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.ContentPost</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.LinkPost</quickActionName>
@@ -289,12 +253,6 @@
             </layoutItem>
         </relatedContentItems>
     </relatedContent>
-    <relatedLists>
-        <relatedList>RelatedGroupsListOnRecord</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedTeamMemberList</relatedList>
-    </relatedLists>
     <relatedLists>
         <fields>SOLUTION.ISSUE</fields>
         <fields>SOLUTION.SOLUTION_NUMBER</fields>
@@ -330,42 +288,33 @@
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>Fulfillment__c.Case__c</relatedList>
-    </relatedLists>
     <relatedObjects>ContactId</relatedObjects>
     <relatedObjects>AccountId</relatedObjects>
     <runAssignmentRulesDefault>false</runAssignmentRulesDefault>
     <showEmailCheckbox>true</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
-    <showKnowledgeComponent>false</showKnowledgeComponent>
+    <showKnowledgeComponent>true</showKnowledgeComponent>
     <showRunAssignmentRulesCheckbox>true</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>true</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h58000001ktSZ</masterLabel>
+        <masterLabel>00h1a0000012AGt</masterLabel>
         <sizeX>3</sizeX>
         <sizeY>4</sizeY>
         <summaryLayoutItems>
-            <field>Priority</field>
+            <field>ContactId</field>
             <posX>0</posX>
             <posY>0</posY>
         </summaryLayoutItems>
         <summaryLayoutItems>
-            <field>Status</field>
+            <field>AccountId</field>
             <posX>0</posX>
             <posY>1</posY>
         </summaryLayoutItems>
         <summaryLayoutItems>
-            <field>Origin</field>
+            <field>ContactPhone</field>
             <posX>0</posX>
             <posY>2</posY>
-        </summaryLayoutItems>
-        <summaryLayoutItems>
-            <field>OwnerId</field>
-            <posX>0</posX>
-            <posY>3</posY>
         </summaryLayoutItems>
         <summaryLayoutItems>
             <field>CaseNumber</field>
@@ -388,24 +337,19 @@
             <posY>3</posY>
         </summaryLayoutItems>
         <summaryLayoutItems>
-            <field>ContactId</field>
+            <field>Status</field>
             <posX>2</posX>
             <posY>0</posY>
         </summaryLayoutItems>
         <summaryLayoutItems>
-            <field>ContactEmail</field>
+            <field>Priority</field>
             <posX>2</posX>
             <posY>1</posY>
         </summaryLayoutItems>
         <summaryLayoutItems>
-            <field>ContactPhone</field>
+            <field>OwnerId</field>
             <posX>2</posX>
             <posY>2</posY>
-        </summaryLayoutItems>
-        <summaryLayoutItems>
-            <field>AccountId</field>
-            <posX>2</posX>
-            <posY>3</posY>
         </summaryLayoutItems>
         <summaryLayoutStyle>CaseInteraction</summaryLayoutStyle>
     </summaryLayout>
